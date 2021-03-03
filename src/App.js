@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import High from './high'
+import { Button } from 'antd';
+import './App.less';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+// const WithLog = Component =>{
+//   const newComp = props => {
+//     return <Component {...props} name="2021 is shuai"></Component>
+//   }
+//   return newComp
+// }
+class App extends Component {
+  render() {
+    return <div className="App">
+      <Button type="primary">{this.props.name}</Button>
+      <High name="this is anyway study react"></High>
     </div>
-  );
+  }
 }
 
 export default App;
