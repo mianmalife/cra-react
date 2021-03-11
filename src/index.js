@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { store } from './store';
 import App from './App';
-ReactDOM.render(
-  <App name="anyway is shuai" />,
+const render = () => (ReactDOM.render(
+  <App />,
   document.getElementById('root')
-);
+));
+render();
+store.subscribe(render);
