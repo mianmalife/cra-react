@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { store } from './store';
+import { Provider } from 'react-redux';
+import store from './reducer'
 import App from './App';
-const render = () => (ReactDOM.render(
-  <App />,
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
-));
-render();
-store.subscribe(render);
+);
