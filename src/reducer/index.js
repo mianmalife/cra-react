@@ -1,6 +1,12 @@
-import { createStore, combineReducers, applyMiddleware} from 'redux'
-import thunk from 'redux-thunk'
+import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
 import num from './countReducer'
 import mulNum from './countTwoReducer'
 import asynNum from './asynReducer'
-export default createStore(combineReducers({num, mulNum, asynNum}), applyMiddleware(thunk))
+const createRootReducer = history => combineReducers({
+    router: connectRouter(history),
+    num,
+    mulNum,
+    asynNum
+})
+export default createRootReducer
