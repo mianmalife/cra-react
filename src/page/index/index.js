@@ -1,31 +1,38 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Button } from 'antd'
-import { addNum, mulTwo, afterNum } from '../../action/addAction'
-function Index (props) {
-    console.log(props, 'index')
-    return (<div>
-        <h2>{props.num}</h2>
-        <h2>{props.mulNum}</h2>
-        <h2>{props.asynNum}</h2>
-        <Button onClick={props.addNumNormal}>加1</Button>
-        <Button onClick={props.numTwo} type="primary">乘2</Button>
-        <Button onClick={props.threeNum} >3秒后变化</Button>
-    </div>)
-}
+import React, { Component } from 'react'
+import { Map } from 'react-amap'
+import UiMarker from './markerUi'
+import './index.less'
+class Index extends Component {
+    constructor(props) {
+        super(props)
+    }
+    clickMap = e => {
+        console.log('click', e)
+    }
+    create = ins =>  {
+        console.log(ins)
+        if (localStorage.getItem('first')) {
 
-const mapStateToProps = state => {
-    return {
-        num: state.num,
-        mulNum: state.mulNum,
-        asynNum: state.asynNum
+        } else {
+            window.location.reload()
+            localStorage.setItem('first', 1)
+        }
+    }
+    componentWillUnmount() {
+        localStorage.clear()
+    }
+    render() {
+        const events = {
+            created: ins => this.create(ins)
+        }
+        return <div className="map__wrapper">
+            <Map amapkey={'35e97b975961b362ba27388d983ef59d'}
+                zoom={4} center={[120, 30]}
+                useAMapUI={true}
+                events={events}>
+                    <UiMarker></UiMarker>
+                </Map>
+        </div>
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        addNumNormal: () => dispatch(addNum()),
-        numTwo: () => dispatch(mulTwo()),
-        threeNum: () => dispatch(afterNum())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default Index
