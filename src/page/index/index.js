@@ -9,29 +9,28 @@ class Index extends Component {
     clickMap = e => {
         console.log('click', e)
     }
-    create = ins =>  {
-        console.log(ins)
-        if (localStorage.getItem('first')) {
+    // create = ins =>  {
+    //     console.log(ins)
+    //     if (localStorage.getItem('first')) {
 
-        } else {
-            window.location.reload()
-            localStorage.setItem('first', 1)
-        }
-    }
-    componentWillUnmount() {
-        localStorage.clear()
-    }
+    //     } else {
+    //         window.location.reload()
+    //         localStorage.setItem('first', 1)
+    //     }
+    // }
+    // componentWillUnmount() {
+    //     localStorage.clear()
+    // }
     render() {
-        const events = {
-            created: ins => this.create(ins)
-        }
+        // const events = {
+        //     created: ins => this.create(ins)
+        // }
         return <div className="map__wrapper">
             <Map amapkey={'35e97b975961b362ba27388d983ef59d'}
                 zoom={4} center={[120, 30]}
-                useAMapUI={true}
-                events={events}>
-                    <UiMarker></UiMarker>
-                </Map>
+                useAMapUI={true}>
+                <UiMarker></UiMarker>
+            </Map>
         </div>
     }
 }
